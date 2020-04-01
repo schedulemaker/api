@@ -54,11 +54,18 @@ input SchedulerInput {
     campuses: [String!]
     school: String!
     term: Int!
+    timeBlocks: [TimeBlock]
+}
+
+input TimeBlock {
+    day: String!
+    startTime: Int!
+    endTime: Int! 
 }
 
 type Query {
-	getBannerMetadata(event: BannerProxyInput): [BannerMetadata]
-    getCourseDescription(event: BannerProxyInput): String
+	getBannerMetadata(event: BannerProxyInput): [BannerMetadata] # For anything that IS NOT a CLASS SEARCH or CATALOG SEARCH or COURSE DESCRIPTION
+    getCourseDescription(event: BannerProxyInput): String # For COURSE DESCRIPTIONS ONLY
 }
 
 type Mutation {

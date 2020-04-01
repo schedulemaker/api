@@ -1,0 +1,76 @@
+# This file contains sample queries for the various operations of the API
+
+#CREATE SCHEDULES
+
+mutation CreateSchedules(
+    $event: SchedulerInput = {
+        courses: ["CIS-1051", "MATH-1041"]
+        campuses: ["MN", "AMB"]
+        school: "temple"
+        term: 202036
+    }
+) {
+    createSchedules(event: $event) {
+    isOpen
+    courseName
+    title
+    campus
+    crn
+    meetingTimes {
+      startTime
+      endTime
+      Monday
+      Tuesday
+      Wednesday
+      Thursday
+      Friday
+      Saturday
+      Sunday
+      building
+      room
+      instructors
+    }
+  }
+}
+
+#BANNER METADATA
+
+query GetCampus(
+  $event: BannerProxyInput = {
+    school: "temple"
+    term: 202036
+    method: "getCampus"
+  }
+) {
+  getBannerMetadata(event: $event) {
+    code
+    description
+  }
+}
+
+query GetInstructors(
+  $event: BannerProxyInput = {
+    school: "temple"
+    term: 202036
+    method: "getInstructors"
+    params: { term: 202036 }
+  }
+) {
+  getBannerMetadata(event: $event) {
+    code
+    description
+  }
+}
+
+#COURSE DESCRIPTION
+
+query GetCourseDescription(
+  $event: BannerProxyInput = {
+    school: "temple"
+    term: 202036
+    method: "getCourseDescription"
+    params: { term: 202036, crn: 6641 }
+  }
+) {
+  getCourseDescription(event: $event)
+}
