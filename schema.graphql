@@ -1,0 +1,71 @@
+input BannerArgs {
+	term: Int
+	subject: String
+	offset: Int
+	pageSize: Int
+	openOnly: Boolean
+	crn: Int
+	max: Int
+}
+
+input BannerProxyInput {
+	school: String!
+	term: Int!
+	method: String!
+	params: BannerArgs
+}
+
+type BannerMetadata {
+	code: String!
+	description: String!
+}
+
+# type Schedule {
+
+# }
+
+type Section {
+    isOpen: Boolean
+    campus: String
+    meetingTimes: [MeetingTime]
+    courseName: String!
+    crn: Int!
+    title: String
+}
+
+type MeetingTime {
+    startTime: Int
+    endTime: Int
+    building: String
+    room: String
+    instructors: [String]
+    weeks: [Int]
+    Monday: Boolean
+    Tuesday: Boolean
+    Wednesday: Boolean
+    Thursday: Boolean
+    Friday: Boolean
+    Saturday: Boolean
+    Sunday: Boolean
+}
+
+input SchedulerInput {
+    courses: [String!]
+    campuses: [String!]
+    school: String!
+    term: Int!
+}
+
+type Query {
+	getBannerMetadata(event: BannerProxyInput): [BannerMetadata]
+    getCourseDescription(event: BannerProxyInput): String
+}
+
+type Mutation {
+    createSchedules(event: SchedulerInput): [[Section]]
+}
+
+schema {
+	query: Query
+    mutation: Mutation
+}
