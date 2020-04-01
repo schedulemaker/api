@@ -74,3 +74,13 @@ query GetCourseDescription(
 ) {
   getCourseDescription(event: $event)
 }
+
+#COURSE NAMES
+
+#Note that this will return duplicates currently, looking into possible solutions
+query GetCourses {
+    getCourses {
+        courseName
+        title
+    }
+}

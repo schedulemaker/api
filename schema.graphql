@@ -63,9 +63,15 @@ input TimeBlock {
     endTime: Int! 
 }
 
+type Course {
+    courseName: String!
+    title: String!
+}
+
 type Query {
 	getBannerMetadata(event: BannerProxyInput): [BannerMetadata] # For anything that IS NOT a CLASS SEARCH or CATALOG SEARCH or COURSE DESCRIPTION
     getCourseDescription(event: BannerProxyInput): String # For COURSE DESCRIPTIONS ONLY
+    getCourses(): [Course]
 }
 
 type Mutation {
