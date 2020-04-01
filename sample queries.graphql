@@ -4,7 +4,7 @@
 
 mutation CreateSchedules(
     $event: SchedulerInput = {
-        courses: ["CIS-1051", "MATH-1041"]
+        courses: ["CIS-0835", "PHYS-1021"]
         campuses: ["MN", "AMB"]
         school: "temple"
         term: 202036
