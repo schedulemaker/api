@@ -51,7 +51,7 @@ type MeetingTime {
 
 input SchedulerInput {
     courses: [String!]
-    campuses: [String!]
+    campus: [String!]
     school: String!
     term: Int!
     timeBlocks: [TimeBlock]
