@@ -7,7 +7,6 @@ mutation CreateSchedules(
     $campuses: [String] = ["MN", "AMB"],
     $school: String = "temple"
     $term: Int = 202036
-    }
 ) {
     createSchedules(courses: $courses, campuses: $campuses, school: $school, term: $term) {
     isOpen
@@ -37,7 +36,7 @@ mutation CreateSchedules(
 query GetCampuses(
   $school: String = "temple",
   $term: Int = 202036,
-  $method: String = getCampuses
+  $method: String = "getCampuses"
 ) {
   getBannerMetadata(school: $school, term: $term, method: $method) {
     code
@@ -48,7 +47,7 @@ query GetCampuses(
 query GetInstructors(
   $school: String = "temple",
   $term: Int = 202036,
-  $method: String = getCampuses,
+  $method: String = "getInstructors",
   $params: BannerArgs = {term: 202036}
 ) {
   getBannerMetadata(school: $school, term: $term, method: $method, params: $params) {
