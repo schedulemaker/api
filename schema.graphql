@@ -60,7 +60,7 @@ type Query {
 }
 
 type Mutation {
-    createSchedules(courses: String[]!, campuses: String[]!, school: String!, term: Int!): [[Section]]
+    createSchedules(courses: [String]!, campuses: [String]!, school: String!, term: Int!): [[Section]]
 }
 
 schema {

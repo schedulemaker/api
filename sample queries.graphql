@@ -3,8 +3,8 @@
 #CREATE SCHEDULES
 
 mutation CreateSchedules(
-    $courses: String[] = ["CIS-0835", "PHYS-1021"]
-    $campuses: String[] = ["MN", "AMB"],
+    $courses: [String] = ["CIS-0835", "PHYS-1021"]
+    $campuses: [String] = ["MN", "AMB"],
     $school: String = "temple"
     $term: Int = 202036
     }
