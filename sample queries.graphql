@@ -3,14 +3,13 @@
 #CREATE SCHEDULES
 
 mutation CreateSchedules(
-    $event: SchedulerInput = {
-        courses: ["CIS-0835", "PHYS-1021"]
-        campus: ["MN", "AMB"]
-        school: "temple"
-        term: 202036
+    $courses: String[] = ["CIS-0835", "PHYS-1021"]
+    $campuses: String[] = ["MN", "AMB"],
+    $school: String = "temple"
+    $term: Int = 202036
     }
 ) {
-    createSchedules(event: $event) {
+    createSchedules(courses: $courses, campuses: $campuses, school: $school, term: $term) {
     isOpen
     courseName
     title
@@ -35,28 +34,24 @@ mutation CreateSchedules(
 
 #BANNER METADATA
 
-query GetCampus(
-  $event: BannerProxyInput = {
-    school: "temple"
-    term: 202036
-    method: "getCampus"
-  }
+query GetCampuses(
+  $school: String = "temple",
+  $term: Int = 202036,
+  $method: String = getCampuses
 ) {
-  getBannerMetadata(event: $event) {
+  getBannerMetadata(school: $school, term: $term, method: $method) {
     code
     description
   }
 }
 
 query GetInstructors(
-  $event: BannerProxyInput = {
-    school: "temple"
-    term: 202036
-    method: "getInstructors"
-    params: { term: 202036 }
-  }
+  $school: String = "temple",
+  $term: Int = 202036,
+  $method: String = getCampuses,
+  $params: BannerArgs = {term: 202036}
 ) {
-  getBannerMetadata(event: $event) {
+  getBannerMetadata(school: $school, term: $term, method: $method, params: $params) {
     code
     description
   }
@@ -64,22 +59,22 @@ query GetInstructors(
 
 #COURSE DESCRIPTION
 
-query GetCourseDescription(
-  $event: BannerProxyInput = {
-    school: "temple"
-    term: 202036
-    method: "getCourseDescription"
-    params: { term: 202036, crn: 6641 }
-  }
-) {
-  getCourseDescription(event: $event)
-}
+# query GetCourseDescription(
+#   $event: BannerProxyInput = {
+#     school: "temple"
+#     term: 202036
+#     method: "getCourseDescription"
+#     params: { term: 202036, crn: 6641 }
+#   }
+# ) {
+#   getCourseDescription(event: $event)
+# }
 
 #COURSE NAMES
 
-#Note that this will return duplicates currently, looking into possible solutions
-query GetCourses {
-    getCourses {
+#Note that this will return duplicates currently, looking Into possible solutions
+query GetCourseList {
+    getCourseList {
         courseName
         title
     }

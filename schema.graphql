@@ -8,13 +8,6 @@ input BannerArgs {
 	max: Int
 }
 
-input BannerProxyInput {
-	school: String!
-	term: Int!
-	method: String!
-	params: BannerArgs
-}
-
 type BannerMetadata {
 	code: String!
 	description: String!
@@ -49,14 +42,6 @@ type MeetingTime {
     Sunday: Boolean
 }
 
-input SchedulerInput {
-    courses: [String!]
-    campus: [String!]
-    school: String!
-    term: Int!
-    timeBlocks: [TimeBlock]
-}
-
 input TimeBlock {
     day: String!
     startTime: Int!
@@ -69,13 +54,13 @@ type Course {
 }
 
 type Query {
-	getBannerMetadata(event: BannerProxyInput): [BannerMetadata] # For anything that IS NOT a CLASS SEARCH or CATALOG SEARCH or COURSE DESCRIPTION
-    getCourseDescription(event: BannerProxyInput): String # For COURSE DESCRIPTIONS ONLY
-    getCourses: [Course]
+	getBannerMetadata(school: String!, term: Int!, method: String!, params: BannerArgs): [BannerMetadata] # For anything that IS NOT a CLASS SEARCH or CATALOG SEARCH or COURSE DESCRIPTION
+    # getCourseDescription(event: BannerProxyInput): String # For COURSE DESCRIPTIONS ONLY
+    getCourseList: [Course]
 }
 
 type Mutation {
-    createSchedules(event: SchedulerInput): [[Section]]
+    createSchedules(courses: String[]!, campuses: String[]!, school: String!, term: Int!): [[Section]]
 }
 
 schema {
