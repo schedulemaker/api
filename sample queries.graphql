@@ -9,7 +9,6 @@ mutation CreateSchedules(
     $term: Int = 202036
 ) {
     createSchedules(courses: $courses, campuses: $campuses, school: $school, term: $term) {
-    isOpen
     courseName
     title
     campus

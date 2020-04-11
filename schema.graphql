@@ -33,13 +33,13 @@ type MeetingTime {
     room: String
     instructors: [String]
     weeks: [Int]
-    Monday: Boolean
-    Tuesday: Boolean
-    Wednesday: Boolean
-    Thursday: Boolean
-    Friday: Boolean
-    Saturday: Boolean
-    Sunday: Boolean
+    monday: Boolean
+    tuesday: Boolean
+    wednesday: Boolean
+    thursday: Boolean
+    friday: Boolean
+    saturday: Boolean
+    sunday: Boolean
 }
 
 input TimeBlock {
