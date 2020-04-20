@@ -16,13 +16,13 @@ mutation CreateSchedules(
     meetingTimes {
       startTime
       endTime
-      Monday
-      Tuesday
-      Wednesday
-      Thursday
-      Friday
-      Saturday
-      Sunday
+      monday
+      tuesday
+      wednesday
+      thursday
+      friday
+      saturday
+      sunday
       building
       room
       instructors
