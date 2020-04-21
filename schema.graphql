@@ -90,7 +90,7 @@ type Query {
 }
 
 type Mutation {
-    saveUserSchedule(username: String!, scheduleId: Int!, sections: [SectionInput]!, commute: Boolean, totalDistance: Int): String
+    saveUserSchedule(username: String!, sections: [SectionInput]!, commute: Boolean, totalDistance: Int): String
     createSchedules(courses: [String]!, campuses: [String]!, school: String!, term: Int!): [[Section]]
 }
 
