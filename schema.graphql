@@ -13,9 +13,13 @@ type BannerMetadata {
 	description: String!
 }
 
-# type Schedule {
-
-# }
+type UserSchedule {
+    sections: [Section]
+    commute: Boolean
+    totalDistance: Float
+    username: ID
+    scheduleId: ID
+}
 
 type Section {
     isOpen: Boolean
@@ -27,6 +31,31 @@ type Section {
 }
 
 type MeetingTime {
+    startTime: Int
+    endTime: Int
+    building: String
+    room: String
+    instructors: [String]
+    weeks: [Int]
+    monday: Boolean
+    tuesday: Boolean
+    wednesday: Boolean
+    thursday: Boolean
+    friday: Boolean
+    saturday: Boolean
+    sunday: Boolean
+}
+
+input SectionInput {
+    isOpen: Boolean
+    campus: String
+    meetingTimes: [MeetingTimeInput]
+    courseName: String!
+    crn: Int!
+    title: String
+}
+
+input MeetingTimeInput {
     startTime: Int
     endTime: Int
     building: String
@@ -54,12 +83,14 @@ type Course {
 }
 
 type Query {
+    getUserSchedules(username: String!): [UserSchedule]
 	getBannerMetadata(school: String!, term: Int!, method: String!, params: BannerArgs): [BannerMetadata] # For anything that IS NOT a CLASS SEARCH or CATALOG SEARCH or COURSE DESCRIPTION
     # getCourseDescription(event: BannerProxyInput): String # For COURSE DESCRIPTIONS ONLY
     getCourseList: [Course]
 }
 
 type Mutation {
+    saveUserSchedule(username: String!, scheduleId: Int!, sections: [SectionInput]!, commute: Boolean, totalDistance: Int): String
     createSchedules(courses: [String]!, campuses: [String]!, school: String!, term: Int!): [[Section]]
 }
 
